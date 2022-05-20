@@ -4,6 +4,7 @@ const path = require('path');
 const reload = require('reload');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
+const ip = require('ip');
 
 const app = express();
 
@@ -13,9 +14,14 @@ app.use(bodyParser.json()); // Parses json, multi-part (file), url-encoded
 
 app.use('/public', express.static('public'));
 app.use('/pages', express.static('pages'));
+app.use('/amis-1.9.0', express.static('amis-1.9.0'))
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'index.html'));
+app.get('/app', function (req, res) {
+  res.sendFile(path.join(__dirname, 'app.html'));
+});
+
+app.get('/page.html', function (req, res) {
+  res.sendFile(path.join(__dirname, 'page.html'));
 });
 
 const server = http.createServer(app);
@@ -28,7 +34,7 @@ reload(app)
     // Reload started, start web server
     server.listen(app.get('port'), function () {
       console.log(
-        'Web server listening on port http://localhost:' + app.get('port')
+        'Web server listening on port http://' + ip.address() + ':' + app.get('port')
       );
     });
   })

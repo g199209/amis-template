@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>amis page template</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <link rel="stylesheet" href="amis-1.9.0/sdk.css" />
+  <link rel="stylesheet" href="amis-1.9.0/helper.css" />
+  <link rel="stylesheet" href="amis-1.9.0/iconfont.css" />
+
+  <!-- theme, only keep one! -->
+  <!-- <link rel="stylesheet" href="amis-1.9.0/cxd.css"/> -->
+  <!-- <link rel="stylesheet" href="amis-1.9.0/dark.css"/> -->
+  <!-- <link rel="stylesheet" href="amis-1.9.0/antd.css"/> -->
+  <!-- <link rel="stylesheet" href="amis-1.9.0/antd.css"/> -->
+
+  <script src="amis-1.9.0/sdk.js"></script>
+
+  <style>
+    html,
+    body,
+    .amis-page-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root" class="amis-page-wrapper"></div>
+  <script>
+    let amis = amisRequire('amis/embed');
+    const match = amisRequire('path-to-regexp').match;
+
+    const amisJSON = {
+      type: 'page',
+      title: 'Single Page',
+      body: {
+        type: 'form',
+        mode: 'horizontal',
+        api: '/saveForm',
+        body: [
+          {
+            label: 'Name',
+            type: 'input-text',
+            name: 'name'
+          },
+          {
+            label: 'Email',
+            type: 'input-email',
+            name: 'email'
+          }
+        ]
+      }
+    };
+
+    let amisInstance = amis.embed(
+      '#root',
+      amisJSON,
+      {},
+      {
+        theme: 'default'
+      }
+    );
+  </script>
+</body>
+</html>
