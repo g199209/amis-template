@@ -14,7 +14,7 @@ app.use(bodyParser.json()); // Parses json, multi-part (file), url-encoded
 
 app.use('/public', express.static('public'));
 app.use('/pages', express.static('pages'));
-app.use('/amis-1.9.0', express.static('amis-1.9.0'))
+app.use('/amis-sdk', express.static('amis-sdk'))
 
 app.get('/app', function (req, res) {
   res.sendFile(path.join(__dirname, 'app.html'));
